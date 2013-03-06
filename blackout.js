@@ -11,23 +11,23 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         var blackoutId = element.attr("id") + "_blackout";
         element.append("<div id='" + blackoutId + "'></div>");
 
-        $(window).resize(function () {
-            var blackout = $("#" + blackoutId);
+        function update(blackout) {
             blackout.css("position", "absolute");
             blackout.css("background-color", colour);
             blackout.css("top", element.position().top);
             blackout.css("left", element.position().left);
             blackout.css("height", element.height());
-            blackout.css("width", function () { return element.width() });
+            blackout.css("width", element.width());
+        }
+
+        $(window).resize(function () {
+            var blackout = $("#" + blackoutId);
+            update(blackout);
         });
 
         var blackout = $("#" + blackoutId);
-        blackout.css("position", "absolute");
-        blackout.css("background-color", colour);
-        blackout.css("top", element.position().top);
-        blackout.css("left", element.position().left);
-        blackout.css("height", element.height());
-        blackout.css("width", function () { return element.width() });
+        update(blackout);
+
         if (opacity > 1)
             opacity = opacity / 100;
 
