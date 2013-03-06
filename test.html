@@ -1,0 +1,21 @@
+<html>
+<head>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="blackout.js"></script>
+</head>
+<body>
+    <div style="padding:3em"></div>
+    
+   Some text outside the area
+    <div id="outer" style="width:20em;margin-left:3em;">
+        Some text inside the area
+        <div id="inner" style="width:15em;background-color:Yellow">
+            Some text within the inner part of the area<button>Hello</button>
+            <br/> Some more text
+        </div>
+    </div>
+
+<button onClick="javascript:$('#outer').blackout('#444444', 0.5);">Blackout</button>
+<button onClick="javascript:$('#outer').unblackout();">UnBlackout</button>
+</body>
+</html>
