@@ -8,30 +8,28 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 (function ($) {
     $.fn.blackout = function (colour, opacity) {
         var element = $(this);
-        var blackoutId = element.attr("id") + "_blackout";
+        var blackoutId = element.attr("id") + "_blackout";        
         element.append("<div id='" + blackoutId + "'></div>");
-
-        function update(blackout) {
+        var blackout = $("#" + blackoutId);
+        
+        function update() {
             blackout.css("position", "absolute");
             blackout.css("background-color", colour);
             blackout.css("top", element.position().top);
             blackout.css("left", element.position().left);
-            blackout.css("height", element.height());
-            blackout.css("width", element.width());
-        }
-
-        $(window).resize(function () {
-            var blackout = $("#" + blackoutId);
-            update(blackout);
-        });
-
-        var blackout = $("#" + blackoutId);
-        update(blackout);
-
+            blackout.css("height", element.outerHeight());
+            blackout.css("width", element.outerWidth());
+        }        
+                
         if (opacity > 1)
             opacity = opacity / 100;
 
+        update(blackout);
         blackout.fadeTo(0, opacity);
+
+        $(window).resize(function () {
+            update(blackout);
+        });
     };
 
     $.fn.unblackout = function () {
